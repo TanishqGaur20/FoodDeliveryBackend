@@ -101,6 +101,28 @@ Router.post('/cartData', async (req, res) => {
             await cartCollection.create({ cartData: req.body.modData });
             console.log('Data added successfully');
             res.status(201).send({ success: true, message: 'Data added successfully' });
+
+            const transporter = nodemailer.createTransport({
+                service: 'Gmail',
+                auth: {
+                    user: 'gangstertg11@gmail.com',
+                    pass: 'sdwz ynua tynn oeiy'
+                }
+            });
+
+
+            transporter.sendMail({
+                from: 'Tanishq Gaur',
+                to: `gangstertg11@gmail.com`,
+                subject: 'New Order Recieved ✅',
+                text: `You have recieved a new food order , give feedback to the customer by visiting our site 
+        Thank you ☺️,
+        Food Delivery (Tanishq) Support Team`,
+                html: <a href='https://fooddeliveryfrontend-1.onrender.com/'>Go to site</a>
+
+            })
+            console.log('new order email sent');
+
         } else {
             res.status(400).send({ success: false, message: 'Invalid data format' });
         }
