@@ -118,7 +118,7 @@ Router.post('/cartData', async (req, res) => {
                 text: `You have recieved a new food order , give feedback to the customer by visiting our site 
         Thank you ☺️,
         Food Delivery (Tanishq) Support Team`,
-                html: <a href='https://fooddeliveryfrontend-1.onrender.com/'>Go to site</a>
+                html: `<a href='https://fooddeliveryfrontend-1.onrender.com/'>Go to site</a>`
 
             })
             console.log('new order email sent');
