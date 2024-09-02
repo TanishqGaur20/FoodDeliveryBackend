@@ -5,7 +5,7 @@ const Router = require("./Routes");
 var cors = require("cors");
 
 const corsOptions = {
-  origin: "https://fooddeliveryfrontend-2.onrender.com",
+  origin: "*",
   optionsSuccessStatus: 200,
 };
 
