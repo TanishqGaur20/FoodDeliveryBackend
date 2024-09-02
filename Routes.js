@@ -176,4 +176,10 @@ Router.post('/addNewMenuItem', async (req, res) => {
     console.log('menu item added');
 
 })
+
+Router.get('/allusers', async (req, res) => {
+    let user = await userCollection.find({})
+    console.log(user);
+    res.json({ users: user })
+})
 module.exports = Router
