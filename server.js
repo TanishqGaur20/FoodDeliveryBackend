@@ -3,9 +3,9 @@ const app = express();
 const db = require("./DataBase/DbConnect");
 const Router = require("./Routes");
 var cors = require("cors");
-
+// https://fooddeliveryfrontend-2.onrender.com
 const corsOptions = {
-  origin: "https://fooddeliveryfrontend-2.onrender.com",
+  origin: "*",
   optionsSuccessStatus: 200,
 };
 
