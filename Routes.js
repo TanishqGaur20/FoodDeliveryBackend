@@ -156,7 +156,6 @@ Router.post('/feedbackData', async (req, res) => {
             } you can see further updated  by visiting our site 
         Thank you ☺️,
                 Food Delivery(Tanishq) Support Team`,
-                html: `< a href = 'https://fooddeliveryfrontend-2.onrender.com/' > Go to site</a > `
 
             })
             console.log('new order email sent');
