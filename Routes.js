@@ -152,8 +152,8 @@ Router.post('/feedbackData', async (req, res) => {
                 from: 'Tanishq Gaur',
                 to: `${feedItem.email}`,
                 subject: 'Admin Responded to your Order ✅',
-                text: `Your ${feedItem.name}  ${feedItem.Status === 'Reject' ? 'Order is rejected please try to order some other stuffs' : feedItem.Status === 'Out Of Delivery' ? "is out of delivery " : `will be delivered in ${feedItem.Status}`}
-            } you can see further updated  by visiting our site 
+                text: `Your ${feedItem.name}  ${feedItem.Status === 'Reject' ? 'Order is rejected please try to order some other stuffs' : feedItem.Status === 'Out Of delivery' ? "is out of delivery " : `will be delivered in ${feedItem.Status}`}
+            you can see further updated  by visiting our site 
         Thank you ☺️,
                 Food Delivery(Tanishq) Support Team`,
 
