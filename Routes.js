@@ -7,6 +7,14 @@ const cartCollection = require('./DataBase/CartSchema')
 const OrderFeedCollection = require('./DataBase/FeedbackSchema')
 
 var Otp;
+const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'gangstertg11@gmail.com',
+        pass: 'sdwz ynua tynn oeiy'
+    }
+});
+
 Router.post('/signup', async (req, res) => {
 
     const { name, password, phone, email } = req.body;
@@ -19,15 +27,6 @@ Router.post('/signup', async (req, res) => {
     console.log(Otp);
 
     let testAccount = await nodemailer.createTestAccount()
-
-    const transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            user: 'gangstertg11@gmail.com',
-            pass: 'sdwz ynua tynn oeiy'
-        }
-    });
-
 
     transporter.sendMail({
         from: 'Tanishq Gaur',
@@ -102,15 +101,6 @@ Router.post('/cartData', async (req, res) => {
             console.log('Data added successfully');
             res.status(201).send({ success: true, message: 'Data added successfully' });
 
-            const transporter = nodemailer.createTransport({
-                service: 'Gmail',
-                auth: {
-                    user: 'gangstertg11@gmail.com',
-                    pass: 'sdwz ynua tynn oeiy'
-                }
-            });
-
-
             transporter.sendMail({
                 from: 'Tanishq Gaur',
                 to: `gangstertg11@gmail.com`,
@@ -118,7 +108,7 @@ Router.post('/cartData', async (req, res) => {
                 text: `You have recieved a new food order , give feedback to the customer by visiting our site 
         Thank you ☺️,
         Food Delivery (Tanishq) Support Team`,
-                html: `<a href='https://fooddeliveryfrontend-1.onrender.com/'>Go to site</a>`
+                html: `<a href='https://fooddeliveryfrontend-2.onrender.com/'>Go to site</a>`
 
             })
             console.log('new order email sent');
@@ -156,6 +146,20 @@ Router.post('/feedbackData', async (req, res) => {
             // Delete the existing document with the same _id, if it exists
             const deleteResult = await OrderFeedCollection.deleteOne({ _id: feedItem._id });
             console.log("Delete result for _id:", feedItem._id, deleteResult);
+
+
+            transporter.sendMail({
+                from: 'Tanishq Gaur',
+                to: `${feedItem.email}`,
+                subject: 'Admin Responded to your Order ✅',
+                text: `Your ${feedItem.name}  ${feedItem.Status === 'Reject' ? 'Order is rejected please try to order some other stuffs' : feedItem.Status === 'Out Of Delivery' ? "is out of delivery " : `will be delivered in ${feedItem.Status}`}
+            } you can see further updated  by visiting our site 
+        Thank you ☺️,
+                Food Delivery(Tanishq) Support Team`,
+                html: `< a href = 'https://fooddeliveryfrontend-2.onrender.com/' > Go to site</a > `
+
+            })
+            console.log('new order email sent');
 
             // Check if the delete was successful
             if (deleteResult.deletedCount > 0) {
